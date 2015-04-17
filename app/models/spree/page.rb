@@ -7,6 +7,9 @@ class Spree::Page < ActiveRecord::Base
   validates_presence_of [:slug, :body], :if => :not_using_foreign_link?
   validates_presence_of :layout, :if => :render_layout_as_partial?
 
+  translates :title, :body, :slug, :meta_keywords, :meta_description, :meta_title, fallbacks_for_empty_tranlsations: true
+  include SpreeI18n::Translatable
+
   validates :slug, :uniqueness => true, :if => :not_using_foreign_link?
   validates :foreign_link, :uniqueness => true, :allow_blank => true
 

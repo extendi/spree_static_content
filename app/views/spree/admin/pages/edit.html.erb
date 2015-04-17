@@ -1,7 +1,13 @@
 
-<h1><%= Spree.t("static_content.static_pages") %> &nbsp;<%= Spree.t("static_content.editing_page") %> "<%= @page.title%>"</h1>
+<%= render 'spree/admin/shared/page_tabs', current: 'Page Details' %>
+
 <%= render "spree/shared/error_messages", :target => @page %>
 
-<hr>
-
-<%= render 'form', resource: @page %>
+<%= form_for @page, url: admin_page_path(@page.id), method: :patch do |f| %>
+  <fieldset>
+    <%= render partial: 'form', locals: { f: f } %>
+    <div data-hook="admin_page_edit_form_buttons">
+      <%= render :partial => 'spree/admin/shared/edit_resource_links' %>
+    </div>
+  </fieldset>
+<% end %>

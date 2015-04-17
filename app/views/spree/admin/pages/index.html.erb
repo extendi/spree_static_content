@@ -1,35 +1,35 @@
-<div>
-  <h1 class="col-sm-5 pull-left"><%= Spree.t("static_content.static_pages") %></h1>
-  <div class='pull-right col-sm-2 add-slider' style="margin-top: 20px">
-    <%= button_link_to Spree.t("static_content.new_page"), new_object_url, {class: 'btn btn-success', icon: 'add'} %>
-  </div>
-  <div class="clearfix"></div>
-</div>
+<% content_for :page_title do %>
+  <%= Spree.t("static_content.static_pages") %>
+<% end %>
 
-<hr>
+<% content_for :page_actions do %>
+  <%= button_link_to Spree.t("static_content.new_page"), new_object_url, {class: 'btn btn-success', icon: 'add'} %>
+<% end %>
 
-<table class="table" id="pages">
-  <tr data-hook="admin_pages_index_headers">
-    <th><%= Spree::Page.human_attribute_name(:title) %></th>
-    <th><%= Spree.t("static_content.link") %></th>
-    <th><%= Spree::Page.human_attribute_name(:visible) %></th>
-    <th data-hook="admin_pages_index_header_actions"></th>
-  </tr>
-  <% @pages.each do |page| -%>
-  <tr data-hook="admin_pages_index_rows" class="<%= cycle('odd', 'even') %>" id="<%= dom_id page %>">
-    <td>
-      <%= page.title %>
-    </td>
-    <td>
-      <%= link_to page.link, page.link, :target => '_blank' %>
-    </td>
-    <td class="align-center">
-      <%= content_tag(:i, '', :class => 'icon-ok green') if page.visible %>
-    </td>
-    <td class="actions" data-hook="admin_pages_index_row_actions">
-      <%= link_to_edit page, :no_text => true %>
-      <%= link_to_delete page, :no_text => true %>
-    </td>
-  </tr>
-  <% end -%>
-</table>
+<%= render partial: 'spree/admin/shared/index_table_options', locals: { collection: @pages } %>
+
+<% if @pages.any? %>
+  <table class="table" id="listing_pages">
+    <thead>
+      <tr data-hook="admin_pages_index_headers">
+        <th><%= Spree::Page.human_attribute_name(:title) %></th>
+        <th><%= Spree.t("static_content.link") %></th>
+        <th><%= Spree::Page.human_attribute_name(:visible) %></th>
+        <th data-hook="admin_store_locators_index_header_actions" class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pages.each do |page| -%>
+      <tr data-hook="admin_pages_index_rows" class="<%= cycle('odd', 'even') %>" id="<%= spree_dom_id page %>">
+        <td><%= page.title %></td>
+        <td><%= link_to page.link, page.link, :target => '_blank' %></td>
+        <td class="align-center"><%= content_tag(:i, '', :class => 'icon-ok green') if page.visible %></td>
+        <td class="actions actions-3 text-right" data-hook="admin_pages_index_row_actions">
+          <%= link_to_edit page, no_text: true %>
+          <%= link_to_delete page, no_text: true %>
+        </td>
+      </tr>
+      <% end -%>
+    </tbody>
+  </table>
+<% end %>
