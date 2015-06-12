@@ -6,7 +6,7 @@ class Spree::StaticContentController < Spree::StoreController
   helper 'spree/products'
 
   def show
-    @page = Spree::Page.by_store(current_store).visible.find_by_slug!(params[:slug])
+    @page = Spree::Page.visible.find_by_slug!(params[:slug])
   end
 
   private

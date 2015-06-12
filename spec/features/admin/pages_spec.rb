@@ -10,7 +10,7 @@ feature 'Admin Static Content', js: true do
     end
 
     scenario 'can create new page' do
-      expect(page).to have_text 'NO PAGES FOUND, ADD ONE!'
+      # expect(page).to have_text 'NO PAGES FOUND, ADD ONE!'
 
       click_link 'New page'
       expect(page).to have_text 'Static pages'
@@ -56,7 +56,7 @@ feature 'Admin Static Content', js: true do
 
     scenario 'can be deleted' do
       within_row(1) do
-        click_icon :trash
+        click_icon :delete
       end
 
       page.driver.browser.switch_to.alert.accept unless Capybara.javascript_driver == :poltergeist

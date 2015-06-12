@@ -9,9 +9,15 @@ describe Spree::Page do
     end
   end
 
-  it 'always add / prefix to slug' do
+  it 'correct slug' do
     page = create(:page, slug: 'hello')
-    expect(page.slug).to eq '/hello'
+    expect(page.slug).to eq 'hello'
+  end
+
+  it 'wrong starting slash slug' do
+    page = build(:page, slug: '/hello')
+    expect(page.valid?).to eq false
+    expect(page.errors).to include(:slug)
   end
 
   context '.link' do
@@ -26,21 +32,5 @@ describe Spree::Page do
     end
   end
 
-
-  context "pages in stores" do
-
-    before(:each) do
-      @store = create(:store)
-      @page = create(:page, :stores => [@store])
-      @page2 = create(:page)
-    end
-
-    it 'should correctly find pages by store' do
-      pages_by_store = Spree::Page.by_store(@store)
-      expect(pages_by_store).to include(@page)
-      expect(pages_by_store).to_not include(@page2)
-    end
-
-  end
 
 end

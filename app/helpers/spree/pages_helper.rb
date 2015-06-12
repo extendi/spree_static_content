@@ -20,7 +20,7 @@ module Spree::PagesHelper
   end
   
   def faq_path
-    static_page_path 'faq'
+    static_page_path '/faq'
   end
   
   def know_how_path
