@@ -7,7 +7,7 @@ module Spree::PagesHelper
   def static_page_path slug
     page = Spree::Page.where(slug: slug).first
     if page.present?
-      static_path page.slug 
+      static_path page.slug
     end
   end
   
@@ -20,7 +20,7 @@ module Spree::PagesHelper
   end
   
   def faq_path
-    static_page_path '/faq'
+    static_page_path 'faq'
   end
   
   def know_how_path
