@@ -16,7 +16,7 @@ module Spree::PagesHelper
   end
   
   def privacy_path
-    
+    static_page_path 'privacy'
   end
   
   def faq_path
