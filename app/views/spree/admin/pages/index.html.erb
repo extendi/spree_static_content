@@ -22,8 +22,8 @@
       <% @pages.each do |page| -%>
       <tr data-hook="admin_pages_index_rows" class="<%= cycle('odd', 'even') %>" id="<%= spree_dom_id page %>">
         <td><%= page.title %></td>
-        <td><%= link_to page.link, page.link, :target => '_blank' %></td>
-        <td class="align-center"><%= content_tag(:i, '', :class => 'icon-ok green') if page.visible %></td>
+        <td><%= link_to page.link, static_page_path(page.slug), :target => '_blank' %></td>
+        <td class="align-center"><%= content_tag(:i, '', :class => 'icon-check icon') if page.visible %></td>
         <td class="actions actions-3 text-right" data-hook="admin_pages_index_row_actions">
           <%= link_to_edit page, no_text: true %>
           <%= link_to_delete page, no_text: true %>
