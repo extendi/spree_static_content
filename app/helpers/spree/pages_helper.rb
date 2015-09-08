@@ -23,14 +23,6 @@ module Spree::PagesHelper
     static_page_path 'legal'
   end
   
-  def faq_path
-    static_page_path 'faq'
-  end
-  
-  def cookies_path
-    static_page_path 'cookies'
-  end
-  
   def know_how_path
     
   end
