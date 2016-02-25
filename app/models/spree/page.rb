@@ -1,4 +1,4 @@
-class Spree::Page < ActiveRecord::Base
+class Spree::Page < Spree::Base
   default_scope -> { order("position ASC") }
 
   validates_presence_of :title
