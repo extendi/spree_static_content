@@ -15,6 +15,14 @@ module Spree::PagesHelper
     
   end
   
+  def help_path
+    static_page_path 'help'
+  end
+  
+  def terms_and_conditions_path
+    static_page_path 'terms_and_conditions'
+  end
+  
   def privacy_path
     static_page_path 'privacy'
   end
