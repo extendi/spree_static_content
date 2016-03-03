@@ -8,7 +8,7 @@ class Spree::StaticContentController < Spree::StoreController
   def show
     @page = Spree::Page.visible.find_by_slug!(params[:slug])
     if shop?
-      @order = current_order
+      @order = current_order || Spree::Order.incomplete.find_or_initialize_by(guest_token: cookies.signed[:guest_token])
     end
   end
 
