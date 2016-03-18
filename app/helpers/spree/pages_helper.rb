@@ -7,7 +7,7 @@ module Spree::PagesHelper
   def static_page_path slug
     page = Spree::Page.where(slug: slug).first
     if page.present?
-      static_path page.slug
+      spree.static_path page.slug
     end
   end
   
